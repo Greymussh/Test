@@ -681,6 +681,35 @@ footer {
 }
 .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,107,107,.4); }
 
+/* ── Exam card ─────────────────────────────────────────────── */
+.exam-card {
+  border-color: rgba(255,215,0,.35);
+  background: linear-gradient(135deg, var(--card), rgba(255,215,0,.06));
+}
+.exam-card:hover { border-color: var(--gold) !important; box-shadow: 0 20px 40px rgba(255,215,0,.18) !important; }
+.exam-card::before { background: linear-gradient(90deg, #f59e0b, var(--gold)) !important; }
+
+/* Exam breakdown bar inside score */
+.exam-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+.exam-subject-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  background: var(--bg2);
+  border-radius: 10px;
+  padding: .65rem 1rem;
+}
+.exam-subject-row .esub { flex: 1; font-size: .9rem; font-weight: 600; }
+.exam-subject-row .epct { font-size: .85rem; color: var(--muted); min-width: 3rem; text-align: right; }
+.exam-mini-bar { flex: 2; height: 6px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.exam-mini-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--primary), #A78BFA); }
+
 /* ── Section picker ────────────────────────────────────────── */
 .section-picker {
   display: grid;
@@ -886,7 +915,7 @@ const QUESTIONS = {
     },
     {
       questionid: 5,
-      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? <u>მათ</u> კიდევ ორი დღე სჭირდებათ საქმის დასასრულებლად.",
+      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? მათ კიდევ ორი დღე სჭირდებათ საქმის დასასრულებლად.",
       answerA: "ხელოსნები",
       answerB: "ხელოსნების",
       answerC: "ხელოსნებმა",
@@ -895,7 +924,7 @@ const QUESTIONS = {
     },
     {
       questionid: 6,
-      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? <u>მათ</u> გაცვლით პროგრამაში მიიღეს მონაწილეობა.",
+      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? მათ გაცვლით პროგრამაში მიიღეს მონაწილეობა.",
       answerA: "სტუდენტები",
       answerB: "სტუდენტების",
       answerC: "სტუდენტებმა",
@@ -904,7 +933,7 @@ const QUESTIONS = {
     },
     {
       questionid: 7,
-      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? <u>მათ</u> უყვართ თავისუფალი დროის ერთად გატარება.",
+      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? მათ უყვართ თავისუფალი დროის ერთად გატარება.",
       answerA: "მეგობრები",
       answerB: "მეგობრების",
       answerC: "მეგობრებმა",
@@ -913,7 +942,7 @@ const QUESTIONS = {
     },
     {
       questionid: 8,
-      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? მწვრთნელმა <u>მათ</u> გამარჯვება მიულოცა.",
+      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? მწვრთნელმა მათ გამარჯვება მიულოცა.",
       answerA: "სპორტსმენები",
       answerB: "სპორტსმენების",
       answerC: "სპორტსმენებმა",
@@ -922,7 +951,7 @@ const QUESTIONS = {
     },
     {
       questionid: 9,
-      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? ოპერატორმა <u>მას</u> პირადობის მოწმობა მოსთხოვა.",
+      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? ოპერატორმა მას პირადობის მოწმობა მოსთხოვა.",
       answerA: "მოქალაქე",
       answerB: "მოქალაქემ",
       answerC: "მოქალაქეს",
@@ -931,7 +960,7 @@ const QUESTIONS = {
     },
     {
       questionid: 10,
-      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? ჩემი ინიციატივა პირველად <u>მას</u> გავაცანი.",
+      questiontext: "რომელი სიტყვით შეცვლით ხაზგასმულ სიტყვას? ჩემი ინიციატივა პირველად მას გავაცანი.",
       answerA: "თანამშრომელი",
       answerB: "თანამშრომელმა",
       answerC: "თანამშრომელს",
@@ -6308,6 +6337,11 @@ const T = {
     mistakes_removed:   "✓ Correct! Removed from mistakes.",
     mistakes_wrong:     "✗ Wrong again. Keep trying!",
     mistakes_done:      "All cleared! 🎉",
+    exam_title:         "Exam",
+    exam_desc:          "30 questions — 10 from each subject, one randomly picked from every section",
+    exam_badge:         "30 Questions · Mixed",
+    exam_start:         "Start Exam →",
+    exam_subject_score: "Subject Breakdown",
   },
   ru: {
     hero_title:         'Учитесь с <span class="gradient">QuizGE</span>',
@@ -6337,6 +6371,11 @@ const T = {
     mistakes_removed:   "✓ Правильно! Убрано из ошибок.",
     mistakes_wrong:     "✗ Снова неверно. Попробуйте ещё!",
     mistakes_done:      "Всё исправлено! 🎉",
+    exam_title:         "Экзамен",
+    exam_desc:          "30 вопросов — по 10 из каждого предмета, по одному из каждого раздела",
+    exam_badge:         "30 вопросов · Смешанный",
+    exam_start:         "Начать экзамен →",
+    exam_subject_score: "Результат по предметам",
   },
 };
 
@@ -6382,6 +6421,8 @@ function refreshView() {
   else if (VIEW === "mistakes-picker")  renderMistakesPicker();
   else if (VIEW === "mistakes-q")       renderMistakesQuestion();
   else if (VIEW === "mistakes-score")   renderMistakesScore();
+  else if (VIEW === "exam")             renderExamQuestion();
+  else if (VIEW === "exam-score")       renderExamScore();
 }
 
 function showHome() {
@@ -6412,6 +6453,14 @@ function showHome() {
           : `<span class="badge badge-free">✓ All clear!</span>`}
         <br><br>
         <span class="btn btn-secondary btn-sm">Practice →</span>
+      </div>
+      <div class="subject-card exam-card" onclick="startExam()">
+        <span class="subject-icon">🎓</span>
+        <h2>${t("exam_title")}</h2>
+        <p>${t("exam_desc")}</p>
+        <span class="badge" style="background:rgba(255,215,0,.12);color:var(--gold);border:1px solid rgba(255,215,0,.3)">${t("exam_badge")}</span>
+        <br><br>
+        <span class="btn btn-sm" style="background:linear-gradient(135deg,#f59e0b,var(--gold));color:#1a1a00;font-weight:700">${t("exam_start")}</span>
       </div>
     </div>`;
 }
@@ -6713,6 +6762,171 @@ function renderMistakesScore() {
       </div>
     </div>`;
 }
+
+// ── EXAM ENGINE ───────────────────────────────────────────────
+// Builds a 30-question exam: for each subject (subject1/2/3),
+// pick exactly 1 random question from each of the 10 sections
+// (section 0 = q0–19, section 1 = q20–39 … section 9 = q180–199).
+// Result: 10 questions per subject, none from the same section.
+
+let examQ = [];          // [{...question, subject, sectionIdx}, ...]
+let examIdx = 0;
+let examAnswered = false;
+// per-subject score tracking: { subject1:{correct,wrong}, ... }
+let examSubScore = {};
+
+const EXAM_SUBJECTS = ["subject1", "subject2", "subject3"];
+
+function buildExam() {
+  examQ = [];
+  for (const subj of EXAM_SUBJECTS) {
+    const pool = QUESTIONS[subj] || [];
+    const sections = Math.ceil(pool.length / SECTION_SIZE); // should be 10
+    for (let s = 0; s < sections; s++) {
+      const slice = pool.slice(s * SECTION_SIZE, (s + 1) * SECTION_SIZE);
+      if (!slice.length) continue;
+      const pick = slice[Math.floor(Math.random() * slice.length)];
+      examQ.push({ ...pick, subject: subj, sectionIdx: s });
+    }
+  }
+  // Shuffle the 30 questions so subjects are interleaved
+  for (let i = examQ.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [examQ[i], examQ[j]] = [examQ[j], examQ[i]];
+  }
+}
+
+function startExam() {
+  buildExam();
+  examIdx = 0;
+  examAnswered = false;
+  examSubScore = {};
+  for (const s of EXAM_SUBJECTS) examSubScore[s] = { correct: 0, wrong: 0 };
+  renderExamQuestion();
+}
+
+function renderExamQuestion() {
+  VIEW = "exam";
+  if (examIdx >= examQ.length) { renderExamScore(); return; }
+
+  const q = examQ[examIdx];
+  const total = examQ.length;
+  const pct = Math.round(examIdx / total * 100);
+  const m = SUBJECT_META[q.subject];
+  examAnswered = false;
+
+  app().innerHTML = `
+    <div class="quiz-wrap">
+      <a href="#" class="back-link" onclick="showHome();return false;">${t("back")}</a>
+      <div class="quiz-header">
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+          <h1 style="font-size:1.5rem">🎓 ${t("exam_title")}</h1>
+          <span class="section-pill" style="background:rgba(255,215,0,.12);border-color:rgba(255,215,0,.3);color:var(--gold)">
+            ${m.icon} ${meta(q.subject,"title")} · §${q.sectionIdx + 1}
+          </span>
+        </div>
+        <div class="quiz-meta" style="margin-top:.4rem">
+          <span>${t("question_of",{n:examIdx+1,total})}</span>
+        </div>
+        <div class="progress-area">
+          <div class="progress-label"><span>${t("progress")}</span><span>${pct}%</span></div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width:${pct}%;background:linear-gradient(90deg,#f59e0b,var(--gold))"></div>
+          </div>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num">${t("question_of",{n:examIdx+1,total})}</div>
+        <div class="question-text">${q.questiontext}</div>
+        <div class="answers-grid">
+          ${["A","B","C","D"].map(l => `
+            <button class="answer-btn" id="ebtn-${l}"
+              onclick="examAnswer('${l}','${q.correctanswer}','${q.subject}',${q.questionid})">
+              <span class="answer-letter">${l}</span><span>${q["answer"+l]}</span>
+            </button>`).join("")}
+        </div>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn btn-ghost btn-sm" onclick="showHome()">✕ ${t("exam_title")}</button>
+        <button class="btn btn-sm" id="enext-btn" style="display:none;background:linear-gradient(135deg,#f59e0b,var(--gold));color:#1a1a00;font-weight:700;padding:.55rem 1.3rem;border:none;border-radius:10px;cursor:pointer"
+          onclick="examNext()">
+          ${examIdx + 1 >= total ? "🏁 " + t("score_title") : t("next_q")}
+        </button>
+      </div>
+    </div>`;
+}
+
+function examAnswer(answer, correct, subject, qid) {
+  if (examAnswered) return;
+  examAnswered = true;
+  ["A","B","C","D"].forEach(l => document.getElementById("ebtn-"+l).disabled = true);
+
+  if (answer === correct) {
+    examSubScore[subject].correct++;
+    document.getElementById("ebtn-"+answer).classList.add("correct");
+    // Remove from mistakes if present
+    if (mistakes[subject]) {
+      mistakes[subject] = mistakes[subject].filter(m => m.questionid !== qid);
+      if (!mistakes[subject].length) delete mistakes[subject];
+      saveMistakes();
+    }
+  } else {
+    examSubScore[subject].wrong++;
+    document.getElementById("ebtn-"+answer).classList.add("wrong");
+    document.getElementById("ebtn-"+correct).classList.add("correct");
+    // Add to mistakes
+    if (!mistakes[subject]) mistakes[subject] = [];
+    if (!mistakes[subject].find(m => m.questionid === qid)) {
+      mistakes[subject].push({ questionid: qid, addedAt: new Date().toISOString() });
+      saveMistakes();
+    }
+  }
+  document.getElementById("enext-btn").style.display = "";
+}
+
+function examNext() { examIdx++; examAnswered = false; renderExamQuestion(); }
+
+function renderExamScore() {
+  VIEW = "exam-score";
+  const total = examQ.length;
+  const totalCorrect = EXAM_SUBJECTS.reduce((a, s) => a + examSubScore[s].correct, 0);
+  const pct = Math.round(totalCorrect / total * 100);
+  const emoji = pct >= 80 ? "🏆" : pct >= 60 ? "👍" : pct >= 40 ? "🙂" : "😬";
+
+  const subjectRows = EXAM_SUBJECTS.map(s => {
+    const sc = examSubScore[s];
+    const subTotal = sc.correct + sc.wrong;
+    const subPct = subTotal ? Math.round(sc.correct / subTotal * 100) : 0;
+    const m = SUBJECT_META[s];
+    return `
+      <div class="exam-subject-row">
+        <span class="esub">${m.icon} ${meta(s,"title")}</span>
+        <div class="exam-mini-bar"><div class="exam-mini-fill" style="width:${subPct}%"></div></div>
+        <span class="epct">${sc.correct}/${subTotal} · ${subPct}%</span>
+      </div>`;
+  }).join("");
+
+  app().innerHTML = `
+    <div class="quiz-wrap">
+      <div class="score-card">
+        <div style="font-size:3rem">${emoji}</div>
+        <h2>🎓 ${t("exam_title")} — ${t("score_title")}</h2>
+        <div class="score-big">${pct}%</div>
+        <div class="score-label">${t("score_label")} · ${totalCorrect}/${total}</div>
+        <div class="score-breakdown">
+          <div class="score-stat score-correct"><div class="num">${totalCorrect}</div><div class="lbl">${t("correct_label")}</div></div>
+          <div class="score-stat score-wrong"><div class="num">${total - totalCorrect}</div><div class="lbl">${t("wrong_label")}</div></div>
+        </div>
+        <p style="color:var(--muted);font-size:.85rem;margin-bottom:.75rem;font-weight:600">${t("exam_subject_score")}</p>
+        <div class="exam-breakdown">${subjectRows}</div>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem">
+          <button class="btn btn-sm" style="background:linear-gradient(135deg,#f59e0b,var(--gold));color:#1a1a00;font-weight:700" onclick="startExam()">${t("play_again")}</button>
+          <button class="btn btn-ghost" onclick="showHome()">${t("back_home")}</button>
+        </div>
+      </div>
+    </div>`;
+}
+// ── END EXAM ENGINE ───────────────────────────────────────────
 
 document.querySelectorAll(".lang-btn").forEach(b => {
   b.classList.toggle("active", b.dataset.lang === lang);
